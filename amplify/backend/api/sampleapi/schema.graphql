@@ -1,0 +1,32 @@
+type Data
+  @model(subscriptions: { level: off })
+  @searchable
+  @auth(
+    rules: [
+      { allow: public, operations: [read], provider: iam }
+      { allow: owner, provider: userPools }
+      { allow: private, provider: userPools }
+    ]
+  ) {
+  id: ID!
+  protectedData: String @auth(rules: [{ allow: private, provider: userPools }])
+  description: String
+  animator: User @belongsTo
+}
+
+type User
+  @model(subscriptions: { level: off })
+  @auth(
+    rules: [
+      { allow: public, operations: [read], provider: iam }
+      { allow: owner, provider: userPools }
+      { allow: private, provider: userPools }
+    ]
+  ) {
+  id: ID!
+  about: String
+  display_name: String
+  email: String @auth(rules: [{ allow: private, provider: userPools }])
+  private_info: String @auth(rules: [{ allow: owner, provider: userPools }])
+  datas: [Data] @hasMany
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "sampleapi",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "D:\\Sample\\next-amplified\\amplify\\backend\\api\\sampleapi\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "AWS_IAM"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authsampleauth"
+      }
+    ]
+  }
+}
